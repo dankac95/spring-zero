@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista dodanych nauczycieli</title>
+</head>
+<body>
+
+<h2>Dodałeś następujących nauczycieli do listy</h2>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Imie</td>
+        <td>Nazwisko</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+            $connect = mysql_connect("localhost","root", "root");
+            if (!$connect) {
+                die(mysql_error());
+            }
+            mysql_select_db("apploymentdevs");
+            $results = mysql_query("SELECT * FROM demo LIMIT 10");
+            while($row = mysql_fetch_array($results)) {
+            ?>
+    <tr>
+        <td><?php echo $row['Id']?></td>
+        <td><?php echo $row['Imie']?></td>
+        <td><?php echo $row['Nazwisko']?></td>
+    </tr>
+
+    <?php
+            }
+            ?>
+    </tbody>
+</table>
+
+
+</body>
+</html>
