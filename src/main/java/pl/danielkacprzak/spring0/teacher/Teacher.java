@@ -1,19 +1,18 @@
 package pl.danielkacprzak.spring0.teacher;
 
 import lombok.*;
+import pl.danielkacprzak.spring0.student.Student;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Getter
-@Setter
-@ToString
 @Entity
 @Table(name = "teacher")
 @RequiredArgsConstructor
 @Data
 public class Teacher {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false)
@@ -21,6 +20,9 @@ public class Teacher {
 
     @Column(nullable = false)
     private String lastName;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<Student> students;
 
     public Teacher(String firstName, String lastName) {
         this.firstName = firstName;
