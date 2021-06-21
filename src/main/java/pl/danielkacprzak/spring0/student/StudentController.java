@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.danielkacprzak.spring0.teacher.TeacherService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/student")
 @RequiredArgsConstructor
@@ -27,5 +29,12 @@ public class StudentController {
     public String handleStudentCreateForm(@ModelAttribute Student student) {
         studentService.create(student);
         return "redirect:/student/list";
+    }
+
+    @GetMapping("/list")
+    public String studentListForm(Model model) {
+        List<Student> students = studentService.findAll();
+        model.addAttribute("students", students);
+        return "student-list";
     }
 }

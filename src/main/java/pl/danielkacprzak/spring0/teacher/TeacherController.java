@@ -40,9 +40,4 @@ public class TeacherController {
         model.addAttribute("teachers", teachers); // pod nazwa teachers przekkazujemy do widoku kolekcje obiektow
         return "teacher-list";
     }
-
-//    @GetMapping("/list")
-//    public List<Teacher> showList() {
-//        return service.showList();
-//    }
 }
