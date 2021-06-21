@@ -11,11 +11,12 @@ public class StudentService {
 
     private final StudentRepository repository;
 
-    public void create(Student student) {
-        repository.save(student);
+    public Student create(Student student) {
+       return repository.save(student);
     }
 
     public List<Student> findAll(){
         return repository.findAll();
     }
+
 }

@@ -18,4 +18,10 @@ public class TeacherService {
     public List<Teacher> findAll() {
         return repository.findAll();
     }
+
+    public void deleteTeacher(Integer id) {
+        repository.deleteById(id);
+    }
+
+
 }
