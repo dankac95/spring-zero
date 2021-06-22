@@ -38,13 +38,9 @@ public class TeacherController {
         return "teacher-list";
     }
 
-    @GetMapping("/delete")
-    public String deleteTeacherForm() {
-        return "teacher-delete";
-    }
-
-    @DeleteMapping("/delete")
-    public void deleteTeacher(Integer id) {
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Integer id) {
         service.deleteTeacher(id);
+        return "redirect:/teacher/list";
     }
 }

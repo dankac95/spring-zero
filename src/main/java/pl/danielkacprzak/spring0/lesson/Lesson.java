@@ -16,13 +16,14 @@ public class Lesson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Integer id;
+    private int id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
     private Teacher teacher;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
     @Column(nullable = false)

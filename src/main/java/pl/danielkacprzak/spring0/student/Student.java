@@ -2,9 +2,11 @@ package pl.danielkacprzak.spring0.student;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import pl.danielkacprzak.spring0.lesson.Lesson;
 import pl.danielkacprzak.spring0.teacher.Teacher;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -23,4 +25,7 @@ public class Student {
 
     @ManyToOne
     private Teacher teacher;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Lesson> lessons;
 }

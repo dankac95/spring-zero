@@ -1,6 +1,7 @@
 package pl.danielkacprzak.spring0.teacher;
 
 import lombok.*;
+import pl.danielkacprzak.spring0.lesson.Lesson;
 import pl.danielkacprzak.spring0.student.Student;
 
 import javax.persistence.*;
@@ -23,6 +24,9 @@ public class Teacher {
 
     @OneToMany(mappedBy = "teacher")
     private List<Student> students;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Lesson> lessons;
 
     public Teacher(String firstName, String lastName) {
         this.firstName = firstName;
