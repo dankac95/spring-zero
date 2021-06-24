@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
+    <title>Lista lekcji </title>
 </head>
 <body>
+<h2>Dodałeś poniższe lekcje do listy</h2>
+<p><a href="/lesson/new">Dodaj lekcje</a></p>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Imie ucznia</td>
+        <td>Nazwisko ucznia</td>
+        <td>Imie nauczyciela</td>
+        <td>Nazwisko nauczyciela</td>
+        <td>Data i godzina lekcji</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="lesson : ${lessons}">
+        <td th:text="${lesson.id}"></td>
+        <td th:text="${lesson.student.firstName}"></td>
+        <td th:text="${lesson.student.lastName}"></td>
+        <td th:text="${lesson.teacher.firstName}"></td>
+        <td th:text="${lesson.teacher.lastName}"></td>
+        <td th:text="${lesson.dateTime}"></td>
 
+
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

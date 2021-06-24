@@ -1,15 +1,17 @@
 package pl.danielkacprzak.spring0.student;
 
+import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.danielkacprzak.spring0.exceptions.TeacherNotFoundException;
 import pl.danielkacprzak.spring0.teacher.TeacherService;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/student")
@@ -36,5 +38,18 @@ public class StudentController {
         List<Student> students = studentService.findAll();
         model.addAttribute("students", students);
         return "student-list";
+    }
+
+    @GetMapping
+    public List<StudentDto> listStudents(@RequestParam("teacherId") int teacherId) {
+        // TODO: Throw HTTP 404 (Not Found) status when there is no teacher with given ID
+        try {
+            return studentService.findByTeacher(teacherId)
+                    .stream()
+                    .map(StudentDto::mapStudent)
+                    .collect(Collectors.toList());
+        } catch (TeacherNotFoundException e) {
+            throw new TeacherNotFoundException(teacherId);
+        }
     }
 }

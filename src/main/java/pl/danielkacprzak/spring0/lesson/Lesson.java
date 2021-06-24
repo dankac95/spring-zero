@@ -2,6 +2,7 @@ package pl.danielkacprzak.spring0.lesson;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.danielkacprzak.spring0.student.Student;
 import pl.danielkacprzak.spring0.teacher.Teacher;
 
@@ -15,17 +16,18 @@ import java.time.LocalDateTime;
 public class Lesson {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
+    @JoinColumn(name = "student_id")
     private Student student;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime dateTime;
 }

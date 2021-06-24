@@ -38,9 +38,10 @@ public class TeacherController {
         return "teacher-list";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
         service.deleteTeacher(id);
         return "redirect:/teacher/list";
     }
 }
+

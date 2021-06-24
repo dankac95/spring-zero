@@ -12,7 +12,10 @@ public class LessonService {
     private final LessonRepository repository;
 
     public Lesson createLesson(Lesson lesson) {
-        return repository.save(lesson);
+        if (lesson.getStudent().getTeacher().getId() == lesson.getTeacher().getId()) {
+            return repository.save(lesson);
+        }
+        return null;
     }
 
     public List<Lesson> findAll() {

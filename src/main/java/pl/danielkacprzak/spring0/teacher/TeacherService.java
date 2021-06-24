@@ -22,6 +22,4 @@ public class TeacherService {
     public void deleteTeacher(Integer id) {
         repository.deleteById(id);
     }
-
-
 }

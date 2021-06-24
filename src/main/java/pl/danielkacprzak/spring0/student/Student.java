@@ -26,6 +26,6 @@ public class Student {
     @ManyToOne
     private Teacher teacher;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student")
     private List<Lesson> lessons;
 }

@@ -25,7 +25,7 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher")
     private List<Student> students;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "teacher")
     private List<Lesson> lessons;
 
     public Teacher(String firstName, String lastName) {
