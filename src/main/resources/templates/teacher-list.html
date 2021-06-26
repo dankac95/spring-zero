@@ -27,6 +27,7 @@
         <td>Id</td>
         <td>Imie</td>
         <td>Nazwisko</td>
+        <td>Aktywność</td>
     </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
         <td th:text="${teacher.id}"></td>
         <td th:text="${teacher.firstName}"></td>
         <td th:text="${teacher.lastName}"></td>
+        <td th:text="${teacher.active}"></td>
         <td><a th:href="@{delete/{id}(id=${teacher.id})}">USUN</a></td>
         <input type="hidden" name="_method" value="put" />
 

@@ -1,15 +1,11 @@
 package pl.danielkacprzak.spring0.student;
 
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.danielkacprzak.spring0.exceptions.TeacherNotFoundException;
 import pl.danielkacprzak.spring0.teacher.TeacherService;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,15 +37,17 @@ public class StudentController {
     }
 
     @GetMapping
+    @ResponseBody
     public List<StudentDto> listStudents(@RequestParam("teacherId") int teacherId) {
-        // TODO: Throw HTTP 404 (Not Found) status when there is no teacher with given ID
-        try {
-            return studentService.findByTeacher(teacherId)
-                    .stream()
-                    .map(StudentDto::mapStudent)
-                    .collect(Collectors.toList());
-        } catch (TeacherNotFoundException e) {
-            throw new TeacherNotFoundException(teacherId);
-        }
+        return studentService.findByTeacher(teacherId)
+                .stream()
+                .map(StudentDto::mapStudent)
+                .collect(Collectors.toList());
     }
 }
+
+
+// trzeba odpiac ucznia od nauczyciela zeby moc go usunac a nastepnie dopiero testowac powysza metode
+//https://dzone.com/articles/spring-rest-service-exception-handling-1
+//https://springframework.guru/exception-handling-in-spring-boot-rest-api/
+//https://mkyong.com/spring-boot/spring-rest-error-handling-example/

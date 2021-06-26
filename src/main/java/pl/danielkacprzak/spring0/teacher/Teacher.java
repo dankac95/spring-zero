@@ -1,5 +1,6 @@
 package pl.danielkacprzak.spring0.teacher;
 
+import jdk.jfr.BooleanFlag;
 import lombok.*;
 import pl.danielkacprzak.spring0.lesson.Lesson;
 import pl.danielkacprzak.spring0.student.Student;
@@ -22,14 +23,19 @@ public class Teacher {
     @Column(nullable = false)
     private String lastName;
 
-    @OneToMany(mappedBy = "teacher")
+    @Column
+    private boolean active = true;
+
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "teacher")
     private List<Student> students;
 
-    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "teacher")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "teacher")
     private List<Lesson> lessons;
 
     public Teacher(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+
 }

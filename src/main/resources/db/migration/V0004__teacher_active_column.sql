@@ -1,0 +1,2 @@
+ALTER TABLE teacher
+    ADD COLUMN active BIT NOT NULL DEFAULT 1;

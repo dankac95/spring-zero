@@ -2,6 +2,9 @@ package pl.danielkacprzak.spring0.student;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.danielkacprzak.spring0.teacher.Teacher;
+import pl.danielkacprzak.spring0.teacher.TeacherNotFoundException;
+import pl.danielkacprzak.spring0.teacher.TeacherRepository;
 
 import java.util.List;
 
@@ -10,6 +13,7 @@ import java.util.List;
 public class StudentService {
 
     private final StudentRepository repository;
+    private final TeacherRepository teacherRepository;
 
     public Student create(Student student) {
         return repository.save(student);
@@ -20,6 +24,8 @@ public class StudentService {
     }
 
     public List<Student> findByTeacher(int teacherId) {
-        return repository.findByTeacherId(teacherId);
+        Teacher teacher = teacherRepository.findById(teacherId)
+                .orElseThrow(() -> new TeacherNotFoundException(teacherId));
+        return teacher.getStudents();
     }
 }

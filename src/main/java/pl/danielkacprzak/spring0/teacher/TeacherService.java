@@ -16,10 +16,13 @@ public class TeacherService {
     }
 
     public List<Teacher> findAll() {
-        return repository.findAll();
+        return repository.findAllActive();
     }
 
     public void deleteTeacher(Integer id) {
-        repository.deleteById(id);
+        Teacher teacher = repository.findById(id)
+                .orElseThrow(() -> new TeacherNotFoundException(id));
+        teacher.setActive(false);
+        repository.save(teacher);
     }
 }

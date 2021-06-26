@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import pl.danielkacprzak.spring0.exceptions.TeacherNotFoundException;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
